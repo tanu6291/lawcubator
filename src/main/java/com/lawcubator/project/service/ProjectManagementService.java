@@ -66,13 +66,13 @@ public class ProjectManagementService {
 
     public List<Project> getAllProject(String visitedProfileUserName, String loginUserName) {
 
-//        if(visitedProfileUserName.equals(loginUserName)){
-//            return projectRepo.findByUserId(visitedProfileUserName);
-//        }else {
-//            return projectRepo.findPublicAndByUserId(visitedProfileUserName);
-//        }
+        if(visitedProfileUserName.equals(loginUserName)){
+            return projectRepo.findByUserId(visitedProfileUserName);
+        }else {
+            return projectRepo.findPublicAndByUserId(visitedProfileUserName);
+        }
 
-        return (List<Project>) projectRepo.findAll();
+        //return (List<Project>) projectRepo.findAll();
 
 
     }

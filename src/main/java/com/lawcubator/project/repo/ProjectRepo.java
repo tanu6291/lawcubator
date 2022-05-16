@@ -11,10 +11,10 @@ import java.util.List;
 @Repository
 public interface ProjectRepo extends CrudRepository<Project, Integer> {
 
-//    @Query("SELECT * from Project where user_id = :userId")
-//    List<Project> findByUserId(String userId);
-//
-//
-//    @Query("SELECT * from Project where is_private = false and user_id = :userId")
-//    List<Project> findPublicAndByUserId(String userId);
+    @Query("SELECT * from Project where user_id = :userId")
+    List<Project> findByUserId(String userId);
+
+
+    @Query("SELECT * from Project where is_private = false and user_id = :userId")
+    List<Project> findPublicAndByUserId(String userId);
 }
