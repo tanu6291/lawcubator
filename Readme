@@ -1,0 +1,119 @@
+Create New User
+RequestType:POST
+URL: localhost:8080/registerNewUser
+Request Params:
+{
+    "userName":"tanu123",
+    "userFirstName":"tanu",
+    "userLastName":"garg",
+    "userPassword":"tanu@123"
+}
+Response:
+{
+    "userName": "tanu123",
+    "userFirstName": "tanu",
+    "userLastName": "garg",
+    "userPassword": "$2a$10$mcHnXFaaeSsYTMF6qW4PS.DUR2BPe1GPqucJoYJYvKjI2ArYzx6fu"
+}
+
+Authentication
+Request Type: POST
+URL: localhost:8080/authenticate
+Request Params:
+{
+    "userName":"tanu123",
+    "userPassword":"tanu@123"
+}
+Response:
+{
+    "user": {
+        "userName": "tanu123",
+        "userFirstName": "tanu",
+        "userLastName": "garg",
+        "userPassword": "$2a$10$mcHnXFaaeSsYTMF6qW4PS.DUR2BPe1GPqucJoYJYvKjI2ArYzx6fu"
+    },
+    "jwtToken": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0YW51MTIzIiwiZXhwIjoxNjUyNzMxOTE5LCJpYXQiOjE2NTI3MTM5MTl9.YHDU-L3H5NMS3gAhkZmm59Zj8Pm-SpXyNdpMbXqqgtUzKmp3iXF_rdBpSqOhHEXBc2eek9SfN-sPASj0wVkfgQ"
+}
+
+Register New Project
+Request Type: POST
+URL:localhost:8080/registerNewProject
+Request params:
+{
+    "name":"first Project",
+    "description":"its a first demo project",
+    "url":"www.abc.com",
+    "showToAll":"false"
+}
+Header:  {Authorization : Bearer JWTToken}
+
+
+Response:
+{
+    "id": 1,
+    "name": "first Project",
+    "description": "its a first demo project",
+    "url": "www.abc.com",
+    "user": {
+        "userName": "tanu123",
+        "userFirstName": "tanu",
+        "userLastName": "garg",
+        "userPassword": "$2a$10$mcHnXFaaeSsYTMF6qW4PS.DUR2BPe1GPqucJoYJYvKjI2ArYzx6fu"
+    },
+    "showToAll": "false"
+}
+
+Get All Projects(if login user name is same as visited profile user name,
+then it will fetch all the public & private projects else it will show only public projects)
+Request Type: GET
+URL:localhost:8080/getAllProjects?visitedProfileUserName=tanu123
+Request Params:
+visitedProfileUserName: tanu123
+Header:  {Authorization : Bearer JWTToken}
+Response:
+[
+    {
+        "id": 1,
+        "name": "first Project",
+        "description": "its a first demo project",
+        "url": "www.abc.com",
+        "user": {
+            "userName": "tanu123",
+            "userFirstName": "tanu",
+            "userLastName": "garg",
+            "userPassword": "$2a$10$mcHnXFaaeSsYTMF6qW4PS.DUR2BPe1GPqucJoYJYvKjI2ArYzx6fu"
+        },
+        "showToAll": "false"
+    }
+]
+
+Edit Project
+Request Type: PUT
+URL:localhost:8080/editProject
+Request Params:{
+                   "id":"1",
+                   "name":"second Project",
+                   "description":"its a second demo project",
+                   "url":"www.abcd.com",
+                   "showToAll":true
+               }
+
+Header:  {Authorization : Bearer JWTToken}
+Response:{
+             "id": 1,
+             "name": "second Project",
+             "description": "its a second demo project",
+             "url": "www.abcd.com",
+             "showToAll": true,
+             "user": {
+                 "userName": "tanu123",
+                 "userFirstName": "tanu",
+                 "userLastName": "garg",
+                 "userPassword": "$2a$10$sjaFHnj4Q5tAioAIEOn0a.VVZjC2ZYBs/YNZsMFne5JfHXg8j.5r6"
+             }
+         }
+
+Delete Project:
+Request Type: Delete
+URL: localhost:8080/deleteProject?projectId=1
+Header:  {Authorization : Bearer JWTToken}
